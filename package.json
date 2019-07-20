@@ -1,0 +1,28 @@
+{
+  "name": "speech-recog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node ./src/server/src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferdoms/speech-recog.git"
+  },
+  "author": "Fernando Marinho da Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ferdoms/speech-recog/issues"
+  },
+  "homepage": "https://github.com/ferdoms/speech-recog#readme",
+  "dependencies": {
+    "concurrently": "^4.1.1",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.0.0",
+    "express-secure-only": "^0.2.1",
+    "vcap_services": "^0.7.1",
+    "watson-developer-cloud": "^4.0.1"
+  }
+}
