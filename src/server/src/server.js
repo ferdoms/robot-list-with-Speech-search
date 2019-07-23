@@ -8,6 +8,7 @@ const AuthorizationV1 = require('watson-developer-cloud/authorization/v1');
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 const vcapServices = require('vcap_services');
+const cors = require('cors')
 
 // allows environment properties to be set in a file named .env
 require('dotenv').load({ silent: true });
@@ -34,6 +35,7 @@ if (process.env.VCAP_SERVICES) {
 }
 
 app.use(express.static(__dirname + '/static'));
+app.use(cors());
 
 // token endpoints
 // **Warning**: these endpoints should probably be guarded with additional authentication & authorization for production use
@@ -51,6 +53,12 @@ var sttAuthService = new AuthorizationV1(
   )
 );
 app.use('/api/speech-to-text/token', function(req, res) {
+  console.log(
+    {
+      iam_apikey: process.env.SPEECH_TO_TEXT_IAM_APIKEY, // if using an RC service
+      url: process.env.SPEECH_TO_TEXT_URL ? process.env.SPEECH_TO_TEXT_URL : SpeechToTextV1.URL
+    }
+  )
   sttAuthService.getToken(function(err, token) {
     if (err) {
       console.log('Error retrieving token: ', err);
@@ -65,8 +73,6 @@ app.use('/api/speech-to-text/token', function(req, res) {
 var ttsAuthService = new AuthorizationV1(
   Object.assign(
     {
-      username: process.env.TEXT_TO_SPEECH_USERNAME, // or hard-code credentials here
-      password: process.env.TEXT_TO_SPEECH_PASSWORD,
       iam_apikey: process.env.TEXT_TO_SPEECH_IAM_APIKEY, // if using an RC service
       url: process.env.TEXT_TO_SPEECH_URL ? process.env.TEXT_TO_SPEECH_URL : TextToSpeechV1.URL
     },
