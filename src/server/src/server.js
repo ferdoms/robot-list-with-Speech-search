@@ -55,8 +55,6 @@ var sttAuthService = new AuthorizationV1(
 app.use('/api/speech-to-text/token', function(req, res) {
   console.log(
     {
-      // username: process.env.SPEECH_TO_TEXT_USERNAME, // or hard-code credentials here
-      // password: process.env.SPEECH_TO_TEXT_PASSWORD,
       iam_apikey: process.env.SPEECH_TO_TEXT_IAM_APIKEY, // if using an RC service
       url: process.env.SPEECH_TO_TEXT_URL ? process.env.SPEECH_TO_TEXT_URL : SpeechToTextV1.URL
     }
