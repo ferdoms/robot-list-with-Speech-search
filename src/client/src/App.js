@@ -7,22 +7,22 @@ class App extends Component {
     this.state = {};
   }
   onClick() {
-    fetch("http://localhost:3002/api/speech-to-text/token")
+    fetch(process.env.REACT_APP_DOMAIN + "api/speech-to-text/token")
       .then(response => {
         // console.log()
         return response.text();
       })
       .then(token => {
+        console.log(process.env.REACT_APP_DOMAIN + "api/speech-to-text/token")
+        console.log(token)
         var stream = recognizeMic({
           access_token: token,
-          // token: token, // use `access_token` as the parameter name if using an RC service
           objectMode: true, // send objects instead of text
           extractResults: true, // convert {results: [{alternatives:[...]}], result_index: 0} to {alternatives: [...], index: 0}
           format: false, // optional - performs basic formatting on the results such as capitals an periods
           url: "https://gateway-lon.watsonplatform.net/speech-to-text/api"
         });
         stream.on("data", data => {
-          console.log(data);
           this.setState({
             text: data.alternatives[0].transcript
           });
