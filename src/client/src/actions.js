@@ -26,7 +26,6 @@ export const requestSpeechToText = () => dispatch => {
   } else {
     url = "/api/speech-to-text/token";
   }
-
   fetch(url)
     .then(response => {
       return response.text();
