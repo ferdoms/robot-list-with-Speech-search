@@ -91,7 +91,7 @@ app.use('/api/text-to-speech/token', function(req, res) {
 });
 
 const port = process.env.PORT || process.env.VCAP_APP_PORT || 3002;
-app.listen(port, function() {
+app.listen(port, () => {
   console.log('Example IBM Watson Speech JS SDK client app & token server live at http://localhost:%s/', port);
 });
 
@@ -102,7 +102,7 @@ app.listen(port, function() {
 if (!process.env.VCAP_SERVICES) {
   const fs = require('fs');
   const https = require('https');
-  const HTTPS_PORT = process.env.PORT || 3001;
+  const HTTPS_PORT = 3001;
 
   const options = {
     key: fs.readFileSync(__dirname + '/keys/localhost.pem'),
