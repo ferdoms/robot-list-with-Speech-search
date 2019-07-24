@@ -5,7 +5,9 @@ import {
   REQUEST_ROBOTS_FAILED,
   REQUEST_SPEECH_TO_TEXT_PENDING,
   REQUEST_SPEECH_TO_TEXT_SUCCESS,
-  REQUEST_SPEECH_TO_TEXT_FAILED
+  REQUEST_SPEECH_TO_TEXT_FAILED,
+  SPEECH_ON,
+  SPEECH_OFF
 } from "./constants";
 
 const initialStateSearch = {
@@ -39,12 +41,13 @@ export const requestRobots = (state = initialStateRobots, action = {}) => {
       return state;
   }
 };
-const initialStateSpeech = {
+const initialStateSpeechSearch = {
+  isSpeech: false,
   speechInput: ""
 };
 
 export const requestSpeechToText = (
-  state = initialStateSpeech,
+  state = initialStateSpeechSearch,
   action = {}
 ) => {
   switch (action.type) {
@@ -54,7 +57,16 @@ export const requestSpeechToText = (
       return { ...state, speechInput: action.payload, isPending: false };
     case REQUEST_SPEECH_TO_TEXT_FAILED:
       return { ...state, error: action.payload, isPending: false };
+    case SPEECH_ON:
+      return { ...state, isSpeech: true };
+    case SPEECH_OFF:
+      return { ...state, isSpeech: false, speechInput: "" };
     default:
       return state;
   }
+};
+
+const initialStateSpeech = {
+  isSpeech: false,
+  speechInput: ""
 };

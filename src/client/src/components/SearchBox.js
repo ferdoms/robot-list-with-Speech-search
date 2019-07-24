@@ -1,6 +1,6 @@
 import React from "react";
 
-const SearchBox = ({ searchChange }) => {
+const SearchBox = ({ searchChange, input }) => {
   return (
     <div className="pa3 dib">
       <input
@@ -8,6 +8,7 @@ const SearchBox = ({ searchChange }) => {
         id="search"
         placeholder="search robots"
         onChange={searchChange}
+        value={input}
         />
     </div>
   );
