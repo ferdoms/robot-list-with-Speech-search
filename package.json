@@ -1,24 +1,25 @@
 {
-  "name": "speech-recog",
+  "name": "Robot-list-with-Speech-search",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node ./src/server/src/server.js",
+    "start": "node ./src/server/src/server.js",
     "client": "cd src/client && npm start",
-    "dev": "concurrently --kill-others \"npm run server\" \"npm run client\""
+    "dev": "concurrently --kill-others \"npm run server\" \"npm run client\"",
+    "deploy": "cd src/client && npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ferdoms/speech-recog.git"
+    "url": "git+https://github.com/ferdoms/Robot-list-with-Speech-search.git"
   },
   "author": "Fernando Marinho da Silva",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ferdoms/speech-recog/issues"
+    "url": "https://github.com/ferdoms/Robot-list-with-Speech-search/issues"
   },
-  "homepage": "https://github.com/ferdoms/speech-recog#readme",
+  "homepage": "https://github.com/ferdoms/Robot-list-with-Speech-search#readme",
   "dependencies": {
     "concurrently": "^4.1.1",
     "cors": "^2.8.5",
