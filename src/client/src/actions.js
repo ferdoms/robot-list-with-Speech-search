@@ -7,7 +7,7 @@ import {
   REQUEST_SPEECH_TO_TEXT_SUCCESS,
   REQUEST_SPEECH_TO_TEXT_FAILED,
   SPEECH_ON,
-  SPEECH_OFF,
+  SPEECH_OFF
 } from "./constants";
 import recognizeMic from "watson-speech/speech-to-text/recognize-microphone";
 
@@ -19,7 +19,15 @@ export const setSearchField = text => ({
 export const requestSpeechToText = () => dispatch => {
   dispatch({ type: REQUEST_SPEECH_TO_TEXT_PENDING });
   dispatch({ type: SPEECH_ON });
-  fetch(process.env.REACT_APP_DOMAIN + "api/speech-to-text/token")
+  // if in development environment
+  let url;
+  if (process.env.REACT_APP_DOMAIN) {
+    url = process.env.REACT_APP_DOMAIN + "/api/speech-to-text/token";
+  } else {
+    url = "/api/speech-to-text/token";
+  }
+
+  fetch(url)
     .then(response => {
       return response.text();
     })
@@ -30,7 +38,7 @@ export const requestSpeechToText = () => dispatch => {
         extractResults: true, // convert {results: [{alternatives:[...]}], result_index: 0} to {alternatives: [...], index: 0}
         format: false, // optional - performs basic formatting on the results such as capitals an periods
         url: "https://gateway-lon.watsonplatform.net/speech-to-text/api",
-        keepMicrophone: true 
+        keepMicrophone: true
       });
       stream.on("data", data => {
         dispatch({
@@ -41,7 +49,7 @@ export const requestSpeechToText = () => dispatch => {
       stream.on("error", error => {
         dispatch({ type: REQUEST_SPEECH_TO_TEXT_FAILED, payload: error });
       });
-      document.querySelector('#stop').onclick = stream.stop.bind(stream);
+      document.querySelector("#stop").onclick = stream.stop.bind(stream);
     })
     .catch(function(error) {
       dispatch({ type: REQUEST_SPEECH_TO_TEXT_FAILED, payload: error });
