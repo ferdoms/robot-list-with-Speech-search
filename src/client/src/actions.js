@@ -21,10 +21,10 @@ export const requestSpeechToText = () => dispatch => {
   dispatch({ type: SPEECH_ON });
   // if in development environment
   let url;
-  if (process.env.REACT_APP_DOMAIN) {
-    url = process.env.REACT_APP_DOMAIN + "/api/speech-to-text/token";
+  if (process.env.REACT_APP_API) {
+    url = process.env.REACT_APP_API + "/api/speech-to-text/token";
   } else {
-    url = "/api/speech-to-text/token";
+    url = "https://robot-list-with-speech-search.herokuapp.com/api/speech-to-text/token";
   }
   fetch(url)
     .then(response => {
