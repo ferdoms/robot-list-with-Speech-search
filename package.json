@@ -1,5 +1,5 @@
 {
-  "name": "Robot-list-with-Speech-search",
+  "name": "robot-list-with-speech-search",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ferdoms/Robot-list-with-Speech-search.git"
+    "url": "git+https://github.com/ferdoms/robot-list-with-speech-search.git"
   },
   "author": "Fernando Marinho da Silva",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ferdoms/Robot-list-with-Speech-search/issues"
+    "url": "https://github.com/ferdoms/robot-list-with-speech-search/issues"
   },
-  "homepage": "https://github.com/ferdoms/Robot-list-with-Speech-search#readme",
+  "homepage": "https://github.com/ferdoms/robot-list-with-speech-search#readme",
   "dependencies": {
     "concurrently": "^4.1.1",
     "cors": "^2.8.5",
