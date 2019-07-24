@@ -8,7 +8,7 @@ const AuthorizationV1 = require('watson-developer-cloud/authorization/v1');
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 const vcapServices = require('vcap_services');
-const cors = require('cors')
+const cors = require('cors')// for development purposes
 
 // allows environment properties to be set in a file named .env
 require('dotenv').load({ silent: true });
@@ -34,7 +34,7 @@ if (process.env.VCAP_SERVICES) {
   app.use(secure());
 }
 
-app.use(express.static(__dirname + '/static'));
+app.use(express.static('src/client/build'));
 app.use(cors());
 
 // token endpoints
